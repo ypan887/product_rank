@@ -12,7 +12,6 @@ gem 'sass-rails', '~> 5.0.4'
 gem 'compass-rails', '~> 2.0.4'
 gem 'slim', '~> 3.0.6'
 gem 'materialize-sass'
-gem 'sqlite3'
 gem 'oauth2'
 
 group :development do
@@ -27,7 +26,10 @@ group :development, :test do
   gem 'simplecov', :require => false
   gem 'coveralls', :require => false
   gem 'pry'
+  gem 'sqlite3'
 end
 
-
+group :production do
+  gem 'pg'
+end
 
