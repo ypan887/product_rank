@@ -12,7 +12,7 @@ gem 'sass-rails', '~> 5.0.4'
 gem 'compass-rails', '~> 2.0.4'
 gem 'slim', '~> 3.0.6'
 gem 'materialize-sass'
-gem 'oauth2'
+gem 'figaro'
 
 group :development do
   gem 'pry-rails'
