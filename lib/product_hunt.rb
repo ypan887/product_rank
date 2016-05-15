@@ -10,7 +10,7 @@ class ProductHunt
     response = post("/v1/oauth/token", :body => body, :headers => { 'Content-Type' => 'application/json', 'Accept' => "application/json" })
   end
 
-  def self.get_today_posts(category)
-    response = post( "/v1/categories/#{category}/posts", :headers => { 'Content-Type' => 'application/json', 'Accept' => "application/json", 'Authorization' => "Bearer #{session[:access_token]}" })
+  def self.get_today_posts(category, token)
+    response = get( "/v1/categories/#{category}/posts", :headers => { 'Content-Type' => 'application/json', 'Accept' => "application/json", 'Authorization' => "Bearer #{token}" })
   end
 end
