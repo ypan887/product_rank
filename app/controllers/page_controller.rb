@@ -9,7 +9,6 @@ class PageController < ApplicationController
 
   def products
     @porducts = ProductHunt.get_today_posts("tech")
-    binding.pry
   end
 
 private
