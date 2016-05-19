@@ -16,8 +16,29 @@ class ProductHunt
     response
   end
 
+  def get_posts_x_days_ago(days)
+    token = get_token["access_token"]
+    query = "days_ago=#{days}"
+    response = self.class.get( "/v1/posts", :query => query, :headers => { 'Content-Type' => 'application/json', 'Accept' => "application/json", 'Authorization' => "Bearer #{token}" })
+  end
+
+  def get_posts_after_post_id(id)
+    token = get_token["access_token"]
+    query = "newer=#{id}"
+    response = self.class.get( "/v1/posts/all", :query => query, :headers => { 'Content-Type' => 'application/json', 'Accept' => "application/json", 'Authorization' => "Bearer #{token}" })
+  end
+
+  def get_first_post_id(response)
+    response.values.first["id"]
+  end
+
   def handling_current_cache(options)
     posts = get_today_posts(options)
     $redis.set(:current, posts) if posts
+  end
+
+private
+  
+  def get_response(url, *options)
   end
 end

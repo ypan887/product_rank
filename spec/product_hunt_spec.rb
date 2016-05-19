@@ -3,7 +3,7 @@ require 'product_hunt'
 
 describe ProductHunt do 
   describe "#get_token" do
-    subject(:token_hash){ProductHunt.new.get_token}
+    let(:token_hash){ProductHunt.new.get_token}
     it "get access_token from product hunt api" do
       expect(token_hash).to have_key("access_token")
       expect(token_hash).to have_key("token_type")
@@ -32,6 +32,20 @@ describe ProductHunt do
       allow(obj).to receive(:get_today_posts).with(an_instance_of(Hash)).and_return({ posts: "" })
       obj.handling_current_cache({})
       expect($redis.get(:current)).to eq( { "posts": "" }.to_s )
+    end
+  end
+
+  describe "#get_posts_x_days_ago" do
+    it "get tech posts x days_ago" do
+      response = ProductHunt.new.get_posts_x_days_ago("1")
+      expect(response["posts"].first).to include("day" => Date.yesterday.to_s)
+    end
+  end
+
+  describe "#get_posts_after_post_id" do
+    it "get tehc posts after paticular post" do
+      response = ProductHunt.new.get_posts_after_post_id("63134")
+      expect(response["posts"].first["id"]).to be > 63134
     end
   end
 end
