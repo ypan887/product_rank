@@ -33,10 +33,6 @@ class ProductHunt
     get_response(url, query: query, token: token)
   end
 
-  def get_first_post_id(response)
-    response.values.first["id"]
-  end
-
   def handling_current_cache(options)
     posts = get_today_posts(options)
     $redis.set(:current, posts) if posts

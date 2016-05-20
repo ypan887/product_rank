@@ -5,6 +5,7 @@ ruby "2.3.0"
 gem 'rails', '4.2.5'
 gem 'httparty'
 gem 'turbolinks'
+gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'slim', '~> 3.0.6'
 gem 'figaro'
@@ -23,7 +24,6 @@ group :test do
   gem 'simplecov', :require => false
   gem 'coveralls', :require => false
   gem 'rb-fsevent'
-  gem 'rspec-nc'
 end
 
 group :development, :test do
@@ -41,7 +41,6 @@ group :assets do
   gem 'materialize-sass'
   gem 'sass-rails', '~> 5.0.4'
   gem 'compass-rails', '~> 2.0.4'
-  gem 'jquery-rails'
   gem 'uglifier'
 end
 
