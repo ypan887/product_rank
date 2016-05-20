@@ -11,7 +11,10 @@ class ProductHunt
   end
 
   def get_today_posts(options)
-    response = self.class.get( "/v1/categories/#{options[:category]}/posts", :headers => { 'Content-Type' => 'application/json', 'Accept' => "application/json", 'Authorization' => "Bearer #{options[:token]}", 'If-None-Match' =>"#{$redis.get(:etag)}" })
+    url = "/v1/categories/#{options[:category]}/posts"
+    token = options[:token]
+    etag = $redis.get(:etag)
+    response = get_response(url, token: token, etag: etag)
     $redis.set(:etag, response.headers["etag"].delete('W/\"'))
     response
   end
@@ -19,13 +22,15 @@ class ProductHunt
   def get_posts_x_days_ago(days)
     token = get_token["access_token"]
     query = "days_ago=#{days}"
-    response = self.class.get( "/v1/posts", :query => query, :headers => { 'Content-Type' => 'application/json', 'Accept' => "application/json", 'Authorization' => "Bearer #{token}" })
+    url = "/v1/posts"
+    get_response(url, query: query, token: token)
   end
 
   def get_posts_after_post_id(id)
     token = get_token["access_token"]
     query = "newer=#{id}"
-    response = self.class.get( "/v1/posts/all", :query => query, :headers => { 'Content-Type' => 'application/json', 'Accept' => "application/json", 'Authorization' => "Bearer #{token}" })
+    url = "/v1/posts/all"
+    get_response(url, query: query, token: token)
   end
 
   def get_first_post_id(response)
@@ -39,6 +44,7 @@ class ProductHunt
 
 private
   
-  def get_response(url, *options)
+  def get_response(url, **options)
+    self.class.get( url, :query => options[:query], :headers => { 'Content-Type' => 'application/json', 'Accept' => "application/json", 'Authorization' => "Bearer #{options[:token]}", 'If-None-Match' =>"#{options[:etag]}" } )
   end
 end
