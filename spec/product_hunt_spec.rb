@@ -38,7 +38,7 @@ describe ProductHunt do
   describe "#get_posts_x_days_ago" do
     it "get tech posts x days_ago" do
       response = ProductHunt.new.get_posts_x_days_ago("1")
-      expect(response["posts"].first).to include("day" => Date.yesterday.to_s)
+      expect(response["posts"].first).to include("day" => Date.today.prev_day.to_s)
     end
   end
 
