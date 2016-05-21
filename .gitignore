@@ -21,3 +21,6 @@
 
 # Ignore guard settings
 /Guardfile
+
+# Ignore redis binary dump (dump.rdb) files
+*.rdb
