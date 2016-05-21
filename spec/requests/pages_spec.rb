@@ -4,18 +4,15 @@ require 'product_hunt'
 describe "pages", type: :request do
 
   describe "visit index" do
-    it "should display index page" do
+    before :each do
+      posts = FactoryGirl.create(:archive)
       get "/"
+    end
+
+    it "should display index page with table of posts" do
       expect(response).to have_http_status(200)
       expect(response).to render_template('index')
-    end
+    end 
   end
 
-  describe "visit product page" do
-    it "should display all products" do
-      get "/products"
-      expect(response).to have_http_status(200)
-      expect(response).to render_template('products')
-    end
-  end
 end

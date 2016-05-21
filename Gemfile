@@ -13,13 +13,19 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
+gem 'materialize-sass'
+gem 'sass-rails', '~> 5.0.4'
+gem 'compass-rails', '~> 2.0.4'
+gem 'uglifier'
 
 group :development do
   gem 'guard-rspec'
+  gem 'rack-mini-profiler'
 end
 
 group :test do
   gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
   gem 'capybara'
   gem 'simplecov', :require => false
   gem 'coveralls', :require => false
@@ -35,12 +41,5 @@ end
 
 group :production do
   gem 'pg'
-end
-
-group :assets do
-  gem 'materialize-sass'
-  gem 'sass-rails', '~> 5.0.4'
-  gem 'compass-rails', '~> 2.0.4'
-  gem 'uglifier'
 end
 

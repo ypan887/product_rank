@@ -1,3 +1,38 @@
 h1 Welcome!
 p Authenticate via one of the social networks to get started
-p = "#{session[:access_token]}"
+.row
+  - @datas.each do |data|
+    .section
+      h5= "#{data.date}"
+      .row
+        - data.posts.each do |post|
+          .col.s6
+            .card.small.hoverable
+              .card-image.waves-effect.waves-block.waves-light
+                = display_images(post)
+              .divider  
+              .card-content
+                .row
+                  span(class="card-title activator grey-text text-darken-3 truncate col s11")
+                    = "#{post["name"]}"
+                  i.material-icons.col.s1.right.activator.align more_vert
+              .card-action
+                .row
+                  span.vote.custom_badge.right
+                    = "#{post["votes_count"]}"
+                    i.material-icons.left.tiny thumb_up
+                  span.right.comment.custom_badge
+                    = "#{post["comments_count"]}"
+                    i.material-icons.left.tiny comment
+              .card-reveal
+                .row
+                  span(class="card-title grey-text text-darken-4 col s11")
+                    = "#{post["name"]}"
+                  i.material-icons.right.reveal.col.s1.card-title close
+                .row
+                  p.col.s12
+                   = "#{post["tagline"]}"
+                  p.col.s12
+                   = link_to "See discussion here", post["discussion_url"]
+    .divider
+            

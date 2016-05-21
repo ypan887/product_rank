@@ -1,0 +1,55 @@
+span.custom_badge {
+  min-width: 3rem;
+  padding: 0 6px;
+  text-align: center;
+  font-size: 1rem;
+  line-height: inherit;
+  color: #757575;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+span.custom_badge.comment {
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: #000;
+  background-color: #EFF0F1;
+  border-radius: 2px;
+  &:after {
+    content: " comments"
+  }
+}
+
+span.custom_badge.vote {
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: #fff;
+  background-color: #26a69a;
+  border-radius: 2px;
+  &:after {
+    content: " votes"
+  }
+}
+
+.card-action {
+  padding: 20px 0px;
+  .row {
+    margin-bottom: 0px;
+  }
+}
+
+.card.small {
+  height: 380px;
+}
+
+i.align {
+  line-height: 48px;
+}
+
+i.reveal {
+  line-height: 1.5;
+}
+
+i.tiny {
+  margin-right: 5px;
+}
