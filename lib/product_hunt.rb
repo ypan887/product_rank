@@ -10,7 +10,7 @@ class ProductHunt
     $redis.get(:token)
   end
 
-  def get_today_posts(options)
+  def get_today_posts
     url = "/v1/posts"
     token = get_token
     etag = $redis.get(:etag)
@@ -33,8 +33,8 @@ class ProductHunt
     get_response(url, query: query, token: token)
   end
 
-  def handling_current_cache(options)
-    posts = get_today_posts(options)
+  def handling_current_cache
+    posts = get_today_posts
     $redis.set(:current, posts) if posts
   end
 
