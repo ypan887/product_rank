@@ -2,10 +2,8 @@ require 'product_hunt'
 
 class GenerateData
   def get_skimed_data(days)
-    response = ProductHunt.new.get_posts_x_days_ago("#{days.to_i+1}")
-    id = response["posts"].last["id"].to_i
-    posts = ProductHunt.new.get_posts_after_post_id(id)["posts"]
-    skim_posts = trim_data(posts)
+    posts = (1..days.to_i).inject([]){|posts, day| posts << ProductHunt.new.get_posts_x_days_ago("#{day}")["posts"]; posts}
+    skim_posts = trim_data(posts.flatten)
     skim_posts_by_date = skim_posts.group_by{ |x| x["day"] }
   end
 

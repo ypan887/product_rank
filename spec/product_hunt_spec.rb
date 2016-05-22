@@ -2,19 +2,18 @@ require 'rails_helper'
 require 'product_hunt'
 
 describe ProductHunt do 
+
   describe "#get_token" do
     let(:token_hash){ProductHunt.new.get_token}
     it "get access_token from product hunt api" do
-      expect(token_hash).to have_key("access_token")
-      expect(token_hash).to have_key("token_type")
+      expect(token_hash).to be_a(String)
     end
   end
 
   describe "#get_today_posts" do
-    let(:token){ ProductHunt.new.get_token["access_token"]}
+    let(:token){ ProductHunt.new.get_token}
     it "get today's posts under the tech category from product hunt api" do
       product_hash = ProductHunt.new.get_today_posts( { category:"tech", token: "#{token}"})
-
       expect(product_hash).to have_key("posts")
     end
 
