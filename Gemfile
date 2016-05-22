@@ -19,6 +19,7 @@ gem 'coffee-rails'
 gem 'compass-rails', '~> 2.0.4'
 gem 'uglifier'
 gem 'will_paginate', '~> 3.1.0'
+gem 'rack-mini-profiler'
 
 group :development do
   gem 'guard-rspec'
@@ -38,7 +39,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'spring'  
   gem 'pry'
-  gem 'sqlite3'
 end
 
 group :production do

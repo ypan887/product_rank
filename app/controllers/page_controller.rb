@@ -3,9 +3,8 @@ class PageController < ApplicationController
   before_action :get_or_set_access_token, only: [:index]
 
   def index
-    #ProductHunt.new.handling_current_cache
-    #current = $redis.get(:current)
-    #@datas = Archive.paginate(page: params[:page])
+    ProductHunt.new.handling_current_cache
+    @current = $redis.get(:current)
     @datas = Archive.paginate(:page => params[:page], :per_page => 5)
   end
 
