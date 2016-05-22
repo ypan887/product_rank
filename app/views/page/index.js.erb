@@ -1,0 +1,6 @@
+$('#infinite_scroll').append('<%= escape_javascript(render partial: "archive", locals: {datas: @datas}) %>');
+<% if @datas.next_page %>
+  $('.pagination').replaceWith('<%= escape_javascript(will_paginate(@datas)) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>

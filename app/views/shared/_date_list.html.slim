@@ -1,5 +1,0 @@
-.section
-  h5= "#{date.date}"
-  .row
-    - date.posts.each do |post|
-      = render partial: "shared/post_list", locals: {post: post}

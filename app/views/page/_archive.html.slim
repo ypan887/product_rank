@@ -1,0 +1,7 @@
+- datas.each do |data|
+  .section
+    h5= "#{data.date}"
+    .row
+      - data.posts.first(4).each do |post|
+        = render partial: "post_list", locals: {post: post}
+  .divider

@@ -1,7 +1,5 @@
 h1 Welcome!
-.row
-  - @datas.each do |data|
-    = render partial: "shared/date_list", locals: {date: data}
-    .divider
-  
-            
+.row#infinite_scroll
+  = render partial: "archive", locals: {datas: @datas}
+= will_paginate @datas
+

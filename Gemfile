@@ -15,8 +15,10 @@ gem 'redis-rails'
 gem 'redis-rack-cache'
 gem 'materialize-sass'
 gem 'sass-rails', '~> 5.0.4'
+gem 'coffee-rails'
 gem 'compass-rails', '~> 2.0.4'
 gem 'uglifier'
+gem 'will_paginate', '~> 3.1.0'
 
 group :development do
   gem 'guard-rspec'
