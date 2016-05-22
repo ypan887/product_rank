@@ -1,10 +1,12 @@
 class PageController < ApplicationController
   require 'product_hunt'
+  require 'generate_data'
   before_action :get_or_set_access_token, only: [:index]
 
   def index
-    ProductHunt.new.handling_current_cache
-    @current = $redis.get(:current)
+    ProductHunt.new.handling_current_cache unless $redis.get(:current)
+    data = JSON.parse($redis.get(:current))
+    @current = GenerateData.new.process_data(data)
     @datas = Archive.paginate(:page => params[:page], :per_page => 5)
   end
 
