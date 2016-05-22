@@ -20,6 +20,7 @@ gem 'compass-rails', '~> 2.0.4'
 gem 'uglifier'
 gem 'will_paginate', '~> 3.1.0'
 gem 'rack-mini-profiler'
+gem 'pg'
 
 group :development do
   gem 'guard-rspec'
@@ -40,8 +41,3 @@ group :development, :test do
   gem 'spring'  
   gem 'pry'
 end
-
-group :production do
-  gem 'pg'
-end
-
