@@ -6,7 +6,7 @@ class PageController < ApplicationController
     #ProductHunt.new.handling_current_cache
     #current = $redis.get(:current)
     #@datas = Archive.paginate(page: params[:page])
-    @datas = Archive.all.order('date DESC')
+    @datas = Archive.all
   end
 
 private
