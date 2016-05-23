@@ -1,9 +1,11 @@
+- n = post_limit
+- preference = sort_preference
 = form_tag("/preference", method: "post")
-  .input-field.col.s4
+  .input-field.col.s5
+    = select_tag(:post_limit, options_for_select((1..9).to_a << "all", :selected => n))
     = label_tag(:post_limit, "Number of posts per day")
-    = text_field_tag(:post_limit, "4")
-  .input-field.col.s4
-    = select_tag(:sort_preference, options_for_select(["comments", "votes"]))
+  .input-field.col.s5
+    = select_tag(:sort_preference, options_for_select(["votes", "comments"], :selected => preference))
     = label_tag(:sort_preference, "Sort by")
-  .input-field.col.s4
+  .input-field.col.s2
     = button_tag "Change", class: "waves-effect waves-teal btn-flat"
