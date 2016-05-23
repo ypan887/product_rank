@@ -35,7 +35,7 @@ class ProductHunt
 
   def handling_current_cache
     posts = get_today_posts["posts"]
-    $redis.set(:current, posts.to_json) unless posts.empty? || posts.nil?
+    $redis.set(:current, posts.to_json) unless posts.blank?
     $redis.expire(:current, 1200)
   end
 

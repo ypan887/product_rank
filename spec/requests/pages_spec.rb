@@ -5,6 +5,7 @@ describe "pages", type: :request do
 
   describe "visit index" do
     before :each do
+      $redis.flushdb
       posts = FactoryGirl.create(:archive)
       get "/"
     end

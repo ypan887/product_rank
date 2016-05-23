@@ -17,7 +17,7 @@ module PageHelper
 
   def post_limit
     n = $redis.get(:post_limit)
-    (n.empty? || n.nil?) ? 4 : n.to_i
+    n.blank?? 4 : n.to_i
   end
 
   def sort_preference
