@@ -21,6 +21,7 @@ gem 'uglifier'
 gem 'will_paginate', '~> 3.1.0'
 gem 'rack-mini-profiler'
 gem 'pg'
+gem 'whenever', :require => false
 
 group :development do
   gem 'guard-rspec'

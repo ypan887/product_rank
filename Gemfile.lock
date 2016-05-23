@@ -46,6 +46,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chronic (0.10.2)
     chunky_png (1.3.5)
     coderay (1.1.1)
     coffee-rails (4.1.1)
@@ -270,6 +271,8 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
     will_paginate (3.1.0)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -306,6 +309,7 @@ DEPENDENCIES
   spring
   turbolinks
   uglifier
+  whenever
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
