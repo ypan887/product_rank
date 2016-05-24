@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :archive do
-    date { "2016-05-10".to_date }
-    posts { [{"day"=>"2016-05-10",
+    date { Date.today.prev_day }
+    posts { [{"day"=> "#{Date.today.prev_day}",
      "created_at"=>"2016-05-10T00:00:10.000-07:00",
      "tagline" => "this is a test product hunt",
      "name" => "test product",
