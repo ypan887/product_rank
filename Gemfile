@@ -19,7 +19,6 @@ gem 'coffee-rails'
 gem 'compass-rails', '~> 2.0.4'
 gem 'uglifier'
 gem 'will_paginate', '~> 3.1.0'
-gem 'rack-mini-profiler'
 gem 'pg'
 gem 'whenever', :require => false
 
