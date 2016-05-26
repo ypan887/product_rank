@@ -10,6 +10,8 @@ The app use redis as cache store. All current day’s posts fed from Api are sto
 ### Postgresql NoSQL
 All non-current posts are stored in postgresql database as JSONB type. Product hunt Api respond with lots of information on each post so using the JSON type can significantly simplify the scheme design.
 
+### Demo
+Please take a look at the demo [here](https://productrank.herokuapp.com/). It's using heroku's free plan, so it need 5-10 second to active for your first visit.
 
 #Getting Started
 
