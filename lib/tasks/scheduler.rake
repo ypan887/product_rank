@@ -1,5 +1,5 @@
 desc "Heroku scheduler tasks"
-task :archive_yesterday => :environment do
+task :update_database => :environment do
   puts "Saving posts from yesterday."
   Archive.new.archive_yesterday
   puts "Posts Saved!"

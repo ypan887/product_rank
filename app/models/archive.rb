@@ -1,3 +1,4 @@
+require 'generate_data'
 class Archive < ActiveRecord::Base
   validates :date, presence: true, allow_blank: false
   validates :date, uniqueness: true
