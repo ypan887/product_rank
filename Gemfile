@@ -24,6 +24,7 @@ gem 'whenever', :require => false
 
 group :development do
   gem 'guard-rspec'
+  gem 'guard-spring'
   gem 'rack-mini-profiler'
 end
 
@@ -34,12 +35,16 @@ group :test do
   gem 'simplecov', :require => false
   gem 'coveralls', :require => false
   gem 'rb-fsevent'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'spring'  
+  gem 'pry-byebug'
   gem 'pry'
+  gem 'spring'  
+  gem 'better_errors'
 end
 
 group :production do
