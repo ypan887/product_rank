@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.producthunt.com/v1/posts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - Bearer
+      If-None-Match:
+      - ''
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Mon, 20 Jun 2016 22:25:55 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=dfe7a7512dff95102480836fe486ecce31466461555; expires=Tue, 20-Jun-17
+        22:25:55 GMT; path=/; domain=.producthunt.com; HttpOnly
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Www-Authenticate:
+      - Bearer realm="ProductHuntOauth2", error="invalid_token", error_description="The
+        access token is invalid"
+      Vary:
+      - Accept-Encoding, Origin
+      X-Request-Id:
+      - 8a8f993c-cc28-4dbc-9ff0-79b1b9a7f6a7
+      X-Runtime:
+      - '0.004624'
+      Via:
+      - 1.1 vegur
+      Strict-Transport-Security:
+      - max-age=2592000; includeSubDomains; preload
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 2b62a3aee17c2114-LAX
+    body:
+      encoding: UTF-8
+      string: '{"error":"unauthorized_oauth","error_description":"Please supply a
+        valid access token. Refer to our api documentation about how to authorize
+        an api request. Please also make sure you require the correct scopes. Eg \"private
+        public\" for to access private endpoints."}'
+    http_version: 
+  recorded_at: Mon, 20 Jun 2016 22:25:55 GMT
+recorded_with: VCR 3.0.3

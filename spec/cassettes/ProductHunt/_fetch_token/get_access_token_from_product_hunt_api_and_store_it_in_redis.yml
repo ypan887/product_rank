@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.producthunt.com/v1/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"7628701ec219201fffc0978396d7a057d16a80e3004dabcc93afca0e51b0dd0e","client_secret":"676d199e598272a11f74f49d3a6669864ece19103551e802ac02be4ccadb852d","grant_type":"client_credentials"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 20 Jun 2016 07:46:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=dcc0e29c7ff9aaed0c564c816d0c6c9961466408795; expires=Tue, 20-Jun-17
+        07:46:35 GMT; path=/; domain=.producthunt.com; HttpOnly
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding, Origin
+      Etag:
+      - W/"51ab96e39f70eb4d7dc08c561f8833a9"
+      X-Request-Id:
+      - 00fb68d8-7081-4996-be6c-76eccb0a29ee
+      X-Runtime:
+      - '0.012355'
+      Via:
+      - 1.1 vegur
+      Strict-Transport-Security:
+      - max-age=2592000; includeSubDomains; preload
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 2b5d9b9da8d80d49-LAX
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"dd10d5ec478b13696d562425637d7b5e9abd3e7ad45b743fcafaa8240e6908f8","token_type":"bearer","scope":"public"}'
+    http_version: 
+  recorded_at: Mon, 20 Jun 2016 07:46:36 GMT
+recorded_with: VCR 3.0.3

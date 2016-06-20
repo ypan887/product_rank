@@ -21,7 +21,7 @@ describe RedisHelper do
     end
   end
 
-  describe "#set_redis", :focus do
+  describe "#set_redis" do
     it "took a key and value as argument and set that key/value pair in redis" do
       dummy_class.new.set_redis(:test, 1)
       expect($redis.get(:test)).to eq("1")

@@ -1,55 +1,64 @@
 require 'httparty'
+require 'redis_helper'
 
 class ProductHunt
   include HTTParty
+  include RedisHelper
   format :json
   base_uri "https://api.producthunt.com"
 
-  def get_token
-    fetch_token if $redis.get(:token).nil?
-    $redis.get(:token)
-  end
-
   def get_today_posts
-    url = "/v1/posts"
-    token = get_token
-    etag = $redis.get(:etag)
-    response = get_response(url, token: token, etag: etag)
-    $redis.set(:etag, response.headers["etag"].delete('W/\"'))
-    response
+    response = get_response(posts_url, token: get_token, etag: get_redis(:etag))
+    set_redis(:etag, response.headers["etag"].delete('W/\"')) unless response.headers["etag"].nil?
+    check_response(response)
   end
 
   def get_posts_x_days_ago(days)
-    token = get_token
-    query = "days_ago=#{days}"
-    url = "/v1/posts"
-    get_response(url, query: query, token: token)
+    check_response(get_response(posts_url, query: days_query(days), token: get_token))
   end
 
-  def get_posts_after_post_id(id)
-    token = get_token
-    query = "newer=#{id}"
-    url = "/v1/posts/all"
-    get_response(url, query: query, token: token)
-  end
-
-  def handling_current_cache
-    posts = get_today_posts["posts"]
-    $redis.set(:current, posts.to_json) unless posts.blank?
-    $redis.expire(:current, 1200)
-  end
-
-private
-  
-  def get_response(url, **options)
-    self.class.get( url, :query => options[:query], :headers => { 'Content-Type' => 'application/json', 'Accept' => "application/json", 'Authorization' => "Bearer #{options[:token]}", 'If-None-Match' =>"#{options[:etag]}" } )
+  def get_token
+    fetch_token if get_redis(:token).nil?
+    get_redis(:token)
   end
 
   def fetch_token
+    token_hash = self.class.post("/v1/oauth/token", :body => token_body, :headers => general_header)
+    set_redis(:token, token_hash["access_token"])
+    expire_token(token_life)
+  end
+
+private
+
+  def posts_url
+    "/v1/posts"
+  end
+
+  def token_life
+    5184000
+  end
+
+  def days_query(days)
+    "days_ago=#{days}"
+  end
+  
+  def token_body
     body = {"client_id" => ENV['api_key'], "client_secret" => ENV['api_secret'], "grant_type" => "client_credentials"}.to_json
-    token_hash = self.class.post("/v1/oauth/token", :body => body, :headers => { 'Content-Type' => 'application/json', 'Accept' => "application/json" })
-    $redis.set(:token, token_hash["access_token"]) 
-    $redis.expire(:token, token_hash["expires_in"] )
-    token_hash
+  end
+
+  def general_header
+    { 'Content-Type' => 'application/json', 'Accept' => "application/json" }
+  end
+
+  def generate_header(hash)
+    general_header.merge('Authorization' => "Bearer #{hash[:token]}", 'If-None-Match' =>"#{hash[:etag]}")
+  end
+
+  def get_response(url, **options)
+    self.class.get(url, :query => options[:query], :headers => generate_header(options))
+  end
+
+  def check_response(response)
+    response.success?? response : nil
   end
 end

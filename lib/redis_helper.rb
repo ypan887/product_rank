@@ -1,4 +1,3 @@
-require 'pry'
 module RedisHelper
   def get_redis(key)
     $redis.get(key)
