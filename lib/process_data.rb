@@ -6,7 +6,7 @@ class ProcessData
 
   def fetch_today_posts
     posts = get_redis(:current)
-    posts ||= cache_posts
+    posts.nil?? cache_posts : eval(posts)
   end
 
   def cache_posts

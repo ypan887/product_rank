@@ -1,8 +1,8 @@
 .section
-  h5= "#{data.keys.first}"
+  h5= "#{posts.first["day"]}"
   .row
     - n = post_limit
-    - sort_posts(data.values.flatten.first(n)).each do |post|
+    - sort_posts(posts.first(n)).each do |post|
       = render partial: "post_list", locals: {post: post}
 .divider
 

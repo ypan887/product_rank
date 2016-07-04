@@ -1,6 +1,6 @@
 - n = post_limit
 - preference = sort_preference
-= form_tag("/preference", method: "post")
+= form_tag("/preference", method: "post", class: "preference")
   .input-field.col.s5
     = select_tag(:post_limit, options_for_select((1..9).to_a << "all", :selected => n))
     = label_tag(:post_limit, "Number of posts per day")

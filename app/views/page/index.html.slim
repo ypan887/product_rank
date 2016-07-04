@@ -1,9 +1,10 @@
 h1 Welcome!
 .row
   = render partial: "preference"
-.row
-  = render partial: "current", locals: {data: @current}
-.row#infinite_scroll
-  = render partial: "archive", locals: {datas: @datas}
-= will_paginate @datas
+.row.current
+  = render partial: "current_posts", locals: {posts: @current} if @current
+.row.archive#infinite_scroll
+  = render partial: "archive_posts", locals: {posts: @archive_posts} if @datas
+/!
+  = will_paginate @datas
 
