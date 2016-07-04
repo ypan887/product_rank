@@ -25,6 +25,7 @@ gem 'whenever', :require => false
 group :development do
   gem 'guard-rspec'
   gem 'guard-spring'
+  gem 'binding_of_caller'
   gem 'rack-mini-profiler'
 end
 
