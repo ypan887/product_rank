@@ -50,25 +50,20 @@ describe ProductHunt do
     end
   end
 
-  # describe "#handling_current_cache" do
-  #   before(:each){ $redis.flushdb }
-  #   it "cached today's new post in redis if there are new posts return from api" do
-  #     obj = ProductHunt.new
-  #     allow(obj).to receive(:get_today_posts).and_return({ "posts" => "1" })
-  #     obj.handling_current_cache
-  #     expect($redis.get(:current)).to eq('"1"')
-  #   end
-  # end
-
   describe "#get_posts_x_days_ago" do
+    let(:x){ 1 }
+    let(:posts){ product_hunt.get_posts_x_days_ago(x) }
+
     it "get tech posts x days_ago", :vcr do
-      response = ProductHunt.new.get_posts_x_days_ago("1")
-      expect(response.headers[:Date]).to include("day" => Date.today.prev_day.to_s)
+      response = product_hunt.get_posts_x_days_ago(x)
+      posts = JSON.parse(response.body)["posts"]
+      expect(response.headers["date"].to_date.prev_day.strftime('%Y-%m-%d')).to eq posts.first["day"]
+      expect(posts.group_by{ |h| h["day"] }.size).to eq x
     end
 
-    # it "return nil if x is invalid days ", :vcr do
-    #   response = ProductHunt.new.get_posts_x_days_ago("-1")
-    #   expect(response).to be_nil
-    # end
+    it "return nil if x is invalid days " do
+      response = product_hunt.get_posts_x_days_ago("-1")
+      expect(response).to be_nil
+    end
   end
 end

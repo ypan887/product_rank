@@ -16,7 +16,7 @@ RSpec.feature "Product Rank", :type => :feature do
 
   scenario 'user should see list of previous posts on root', :vcr do
     visit root_path
-    expect(page).to have_css(".preference")
+    expect(page).to have_title("#{DATE.yesterday}")
   end
 
   scenario 'user should see list of product with default settings', :vcr do

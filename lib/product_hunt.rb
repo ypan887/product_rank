@@ -14,6 +14,7 @@ class ProductHunt
   end
 
   def get_posts_x_days_ago(days)
+    return nil if days.to_i < 1
     check_response(get_response(posts_url, query: days_query(days), token: get_token))
   end
 

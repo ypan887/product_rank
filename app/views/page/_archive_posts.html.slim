@@ -3,6 +3,6 @@
     h5= "#{data.date}"
     .row
       - n = post_limit
-      - sort_posts(data.posts.first(n)).each do |post|
+      - sort_posts(data.posts.lazy.first(n)).each do |post|
         = render partial: "post_list", locals: {post: post}
   .divider
