@@ -12,7 +12,7 @@ describe ProductHunt do
       expect(product_hunt.get_token).to eq("fake token")
     end
 
-    it "call fetch_token method to get token if no token key in redis" do
+    it "call fetch_token method to get token if no token key in redis", :vcr do
       $redis.flushdb
       allow(product_hunt).to receive(:fetch_token).and_return(true)
       product_hunt.get_token

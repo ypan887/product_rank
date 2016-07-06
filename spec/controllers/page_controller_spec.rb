@@ -9,6 +9,7 @@ RSpec.describe PageController do
     end
 
     it "assigns @archive_posts" do
+      allow(controller).to receive(:get_current_posts)
       allow(controller).to receive(:paginate_archive_posts).and_return(1)
       get :index
       expect(assigns(:archive_posts)).to_not be_nil
