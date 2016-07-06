@@ -1,8 +1,8 @@
-- datas.each do |data|
+- days.each do |day|
   .section
-    h5= "#{data.date}"
+    h5= "#{day.date}"
     .row
       - n = post_limit
-      - sort_posts(data.posts.lazy.first(n)).each do |post|
+      - sort_posts(day.posts.lazy.first(n)).each do |post|
         = render partial: "post_list", locals: {post: post}
   .divider

@@ -32,5 +32,6 @@ RSpec.feature "Product Rank", :type => :feature do
     select "comments", :from => "sort_preference"
       click_button 'Change'
     expect(page).to have_select("sort_preference", :selected => "comments")
+    expect(@posts[1]["name"]).to appear_before(@posts[2]["name"])
   end
 end

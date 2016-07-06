@@ -4,7 +4,6 @@ h1 Welcome!
 .row.current
   = render partial: "current_posts", locals: {posts: @current} if @current
 .row.archive#infinite_scroll
-  = render partial: "archive_posts", locals: {posts: @archive_posts} if @datas
-/!
-  = will_paginate @datas
+  = render partial: "archive_posts", locals: {days: @archive_posts} if @archive_posts
+  = will_paginate @archive_posts
 
