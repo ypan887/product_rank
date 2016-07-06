@@ -18,10 +18,14 @@ class ProcessData
     data.tap{|p| set_redis(:current, trim_data(p)) unless p.nil? }
   end
 
-  def get_posts_from_yesterday_to_x_days_ago(days)
-    posts = (1..days.to_i).inject([]){|posts, day| posts << process_posts(@product_hunt.get_posts_x_days_ago(day)); posts}
+  def get_posts_from_yesterday_to_x_days_ago(x)
+    (1..(x.to_i)).inject([]) do|posts, day| 
+      post = process_posts(@product_hunt.get_posts_x_days_ago(day)["posts"])
+      posts << post unless post.nil?
+      posts
+    end
   end
-  
+
   def process_posts(data)
     trimmed_posts = trim_data(data)
     group_data(trimmed_posts)
@@ -30,9 +34,6 @@ class ProcessData
   def archive_x_days(day)
     data = get_posts_from_yesterday_to_x_days_ago(day)
     data.each{ |h| Archive.create({date: h.keys.first, posts: h.values.first}) }
-  end
-
-  def posts_x_days_ago
   end
 
 private

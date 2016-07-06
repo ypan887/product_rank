@@ -41,7 +41,7 @@ describe ProcessData do
   describe "#get_posts_from_yesterday_to_x_days_ago" do
     let(:days){ 2 }
     it "get posts from yesterday to x days ago in an array" do
-      allow_any_instance_of(ProductHunt).to receive(:get_posts_x_days_ago) 
+      allow_any_instance_of(ProductHunt).to receive(:get_posts_x_days_ago).and_return({ "posts" => [] }) 
       allow(processer).to receive(:process_posts).and_return({"2016-07-03"=>[{"category_id"=>1}]})
       archive_posts = processer.get_posts_from_yesterday_to_x_days_ago(days)
       expect(archive_posts.size).to eq(days)
