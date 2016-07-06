@@ -1,4 +1,3 @@
-require 'generate_data'
+require 'process_data'
 
-data = GenerateData.new.get_skimed_data("30")
-data.each{ |k, v| Archive.create({date: k, posts: v}) }
+ProcessData.new.archive_x_days(30)
