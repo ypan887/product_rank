@@ -1,17 +1,15 @@
-fake_post = {"day"=> "#{Date.today.prev_day}",
-     "created_at"=>"2016-05-10T00:00:10.000-07:00",
-     "tagline" => "this is a test product hunt",
-     "name" => "test product",
-     "thumbnail" => "",
-     "category_id"=>3,
-     "votes_count"=>14,
-     "comments_count"=>1,
-     "discussion_url"=>
-      "some_url"}
+fake_post_1 = { "name"=>"fake_post_1", "votes_count"=>1, "comments_count"=>3, "thumbnail"=>"" }
+fake_post_2 = { "name"=>"fake_post_2", "votes_count"=>2, "comments_count"=>2, "thumbnail"=>"" }
+fake_post_3 = { "name"=>"fake_post_3", "votes_count"=>3, "comments_count"=>1, "thumbnail"=>"" }
 
 FactoryGirl.define do
+
+  sequence :date do |n|
+    (n+2).days.ago
+  end
+
   factory :archive do
-    date { Date.today.prev_day }
-    posts { [fake_post] * 2 }
+    date
+    posts { [fake_post_2, fake_post_1, fake_post_3] }
   end
 end
