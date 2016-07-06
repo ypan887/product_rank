@@ -14,17 +14,18 @@ class ProcessData
     data.tap{|p| set_redis(:current, trim_data(p)) unless p.nil? }
   end
 
-  def fetch_x_days_ago_posts
-  end
-
-  def get_skimed_data(days)
-    posts = (1..days.to_i).inject([]){|posts, day| posts << ProductHunt.new.get_posts_x_days_ago("#{day}")["posts"]; posts}
-    skim_posts_by_date = process_data(posts.flatten)
+  def get_posts_from_yesterday_to_x_days_ago(days)
+    posts = (1..days.to_i).inject([]){|posts, day| posts << process_posts(posts_x_days_ago(day)); posts}
   end
   
-  def process_data(data)
-    skim_data = trim_data(data)
-    group_data(skim_data)
+  def process_posts(data)
+    trimmed_posts = trim_data(data)
+    group_data(trimmed_posts)
+  end
+
+  def archive_x_days(day)
+    data = get_posts_from_yesterday_to_x_days_ago(day)
+    data.each{ |h| Archive.create({date: h.keys.first, posts: h.values.first}) }
   end
 
 private
@@ -35,5 +36,10 @@ private
 
   def group_data(data)
     data.group_by{ |x| x["day"] }
+  end
+
+  def posts_x_days_ago(day)
+    product_hunt = ProductHunt.new
+    product_hunt.get_posts_x_days_ago("#{day}")["posts"]
   end
 end
