@@ -57,7 +57,7 @@ describe ProductHunt do
     it "get tech posts x days_ago", :vcr do
       response = product_hunt.get_posts_x_days_ago(x)
       posts = JSON.parse(response.body)["posts"]
-      expect(response.headers["date"].to_date.prev_day.strftime('%Y-%m-%d')).to eq posts.first["day"]
+      expect(response.headers["date"].to_time.to_date.prev_day.strftime('%Y-%m-%d')).to eq posts.first["day"]
       expect(posts.group_by{ |h| h["day"] }.size).to eq x
     end
 
