@@ -27,6 +27,9 @@ group :development do
   gem 'guard-spring'
   gem 'binding_of_caller'
   gem 'rack-mini-profiler'
+  gem 'flamegraph'
+  gem 'stackprof'
+  gem 'memory_profiler'
 end
 
 group :test do
