@@ -1,6 +1,6 @@
-$('#infinite_scroll').append('<%= escape_javascript(render partial: "archive", locals: {datas: @datas}) %>');
-<% if @datas.next_page %>
-  $('.pagination').replaceWith('<%= escape_javascript(will_paginate(@datas)) %>');
+$('#infinite_scroll').append('<%= escape_javascript(render partial: "archive_posts", locals: {days: @archive_posts}) %>');
+<% if @archive_posts.next_page %>
+  $('.pagination').replaceWith('<%= escape_javascript(will_paginate(@archive_posts)) %>');
 <% else %>
   $('.pagination').remove();
 <% end %>

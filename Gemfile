@@ -22,6 +22,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'pg'
 gem 'whenever', :require => false
 
+
 group :development do
   gem 'guard-rspec'
   gem 'guard-spring'
@@ -44,11 +45,11 @@ group :test do
 end
 
 group :development, :test do
+  gem 'web-console'
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry'
   gem 'spring'  
-  gem 'better_errors'
 end
 
 group :production do

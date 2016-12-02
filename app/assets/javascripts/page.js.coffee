@@ -6,3 +6,4 @@ jQuery ->
         $('.pagination').text("Fetching more products...")
         $.getScript(url)
     $(window).scroll()
+

@@ -5,6 +5,10 @@ class PageController < ApplicationController
   def index
     @current = get_current_posts
     @archive_posts = paginate_archive_posts
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 private
