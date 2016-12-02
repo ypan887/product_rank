@@ -1,4 +1,5 @@
 $('#infinite_scroll').append('<%= escape_javascript(render partial: "archive_posts", locals: {days: @archive_posts}) %>');
+$('.pagination').hide();
 <% if @archive_posts.next_page %>
   $('.pagination').replaceWith('<%= escape_javascript(will_paginate(@archive_posts)) %>');
 <% else %>
