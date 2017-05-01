@@ -1,8 +1,6 @@
-A product hunt client app with simple adjustable display preference settings. Product hunt is a great website, but there are too many new interesting posts every day. This app is for people like me who wants to minimize their time on PH by focusing their attention only on the top posts. User can decide how many posts are enough for one day and how those posts should be sorted. 
-
 # Introduction
 
-I am using this project to learn redis and NoSQL store.
+A product hunt client app with simple adjustable display preference settings. Product hunt is a great website, but there are too many new interesting posts every day. This app is for people like me who wants to minimize their time on PH by focusing their attention only on the top posts. User can decide how many posts are enough for one day and how those posts should be sorted. 
 
 ### Redis Cache
 The app use redis as cache store. All current day’s posts fed from Api are stored in cache and are set to expire in 20 mins. This way, User can get new posts from server without sending out too many requests.
